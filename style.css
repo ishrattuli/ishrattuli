@@ -1,4 +1,22 @@
-container {
-  max-width 1200px;
+/* Main CSS styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* layout and typography */
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding:60px 20w;
+  padding: 60px 20vw;
+}
