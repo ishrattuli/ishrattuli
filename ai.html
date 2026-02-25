@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflection on "With ‘AI slop’ distorting our reality, the world is sleepwalking into disaster", Nesrine Malik - Ishrat Tuli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --degas-peach: #f5dcc8;
+            --degas-sage: #b8c5a8;
+            --degas-blue: #9db4c8;
+            --degas-pink: #e8b4bc;
+            --degas-cream: #f9f5f0;
+            --degas-gold: #d4af37;
+            --degas-dark: #3a3228;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+           body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #f9f5f0;
+    color: var(--degas-dark);
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(245, 220, 200, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(184, 197, 168, 0.12) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+       url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" /><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            padding: 12px 30px;
+            background: var(--degas-gold);
+            color: var(--degas-dark);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .back-link:hover {
+            background: #c39d2f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--degas-dark);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .assignment-meta {
+            font-size: 1.3rem;
+            color: var(--degas-dark);
+            font-style: italic;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        .content-frame {
+            background: var(--degas-cream);
+            border: 16px solid var(--degas-gold);
+            box-shadow: 
+                inset 0 0 0 2px var(--degas-dark),
+                inset 0 0 0 10px var(--degas-cream),
+                inset 0 0 0 12px var(--degas-gold),
+                0 15px 40px rgba(58, 50, 40, 0.25);
+            padding: 50px;
+            position: relative;
+            animation: fadeInUp 1s ease;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .content-frame::before,
+        .content-frame::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--degas-gold);
+        }
+
+        .content-frame::before {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .content-frame::after {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .assignment-content {
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+
+        .assignment-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--degas-dark);
+            margin: 40px 0 20px 0;
+            font-weight: 600;
+        }
+
+        .assignment-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .assignment-content p {
+            margin-bottom: 20px;
+        }
+
+        .assignment-content ul, 
+        .assignment-content ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        .assignment-content li {
+            margin-bottom: 10px;
+        }
+
+        .assignment-content blockquote {
+            border-left: 5px solid var(--degas-pink);
+            background: rgba(255, 255, 255, 0.5);
+            padding: 20px 30px;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .painting-accent {
+            position: fixed;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .painting-accent.ballet-1 {
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--degas-pink) 0%, var(--degas-peach) 100%);
+            border-radius: 50% 50% 40% 60%;
+            transform: rotate(-15deg);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-15deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(-15deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content-frame {
+                padding: 30px;
+                border-width: 10px;
+            }
+
+            .painting-accent {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="painting-accent ballet-1"></div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <header>
+            <h1>Reflection on "With ‘AI slop’ distorting our reality, the world is sleepwalking into disaster", Nesrine Malik</h1>
+            <p class="assignment-meta">MEDPL150 • Spring 2026</p>
+        </header>
+
+        <div class="content-frame">
+            <div class="assignment-content">
+                <h2>Reflection</h2>
+                <p>
+                   In the words of Nesrine Malik, “Profound Disorientation” is exactly how I’d describe my experience with the integration of AI-generated content in everyday life. It now exists beyond just social media and technology; I must stop myself on the street and wonder whether the movie poster or advertisement was not made by AI, but generated. Generated is the word we use, and it’s fitting, as the use of “made” would imply that hard work and effort were put into it. We don’t-shouldn’t-think of AI work as something that was made, regardless of the human effort it may have taken to code and train the algorithm. Once the platform or product reaches mainstream media and evidently the hands of the public, it gets warped and molded to the desired reality of whoever, and it really is whoever, can get their hands on it.
+
+                </p>
+                    Of course, I believe that AI generation can have a positive outcome. I’ve seen TikTok’s of people “bringing back” their loved ones through AI-generated photos or videos, and didn’t completely hate the use of the artificial platform, but a part of me knew that I could never see myself going down that road, a road I truly believe shouldn’t even be open to us. Malik says, “The overall effect of being exposed to AI images all the time, from the nonsensical to the soothing to the ideological, is that everything begins to land in a different way.” His words could not be more fitting, echoing what I said about questioning everyday productions. We choose AI because it can give us what we want, whenever we want. We can craft our social algorithm to perfection so that we never have to see our dislikes, our oppositions, or criticism. This social bias then affects decision making and bleeds into every aspect of life.               
+                  </p>
+                    Whether it be a simple homework question to ChatGPT, or a prompt into CanvaAI, creation is a touch away for us all. But this easy, quick generation is exactly why we forget to think for ourselves. Children who have not existed in an age before mainstream AI know that they always have the option and that it has always existed. AI, I accept, makes our lives easier, but unnecessarily so. In fact, if you don’t want to write an essay for your English class, why are you even here? This is not to eliminate the use of it completely; it’s an important step in world evolution, but to caution restraint. “AI Slop” becoming a mainstream mantra is already a step into the right direction, highlighting the importance of calling out artificial art that seeks to take the place of true art. Malik’s comments about the dangers of AI and media curation are only the beginning, and many have already started to try to break free of the “algorithm” and the clutches of META, the supposedly main culprit of social media addiction.
+                 </p>
+                  Easier access to AI and mass generation of AI art, etc., leads to deeper immersion into “subjective worlds rather than objective reality”, which makes dystopian movies seem much closer than we thought before. Malik’s analysis of the direct effect of AI generated content on media literacy strengthened my existing belief that AI needs rules and regulations to stop the spread of mis information, mass panic, and other public crisis that cause society to deteriorate further.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
