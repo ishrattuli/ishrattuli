@@ -17,6 +17,7 @@
             --w-cream:  #faf6f2;
             --w-gold:   #c8913a;
         }
+        html { scroll-behavior: smooth; }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family:'Lato', sans-serif;
@@ -48,6 +49,16 @@
         .nav-links { display:flex; gap:2rem; list-style:none; }
         .nav-links a { font-size:.73rem; letter-spacing:.2em; text-transform:uppercase; color:var(--w-mauve); text-decoration:none; font-weight:400; transition:color .2s; }
         .nav-links a:hover { color:var(--w-ink); }
+        .nav-links a::after {
+            content:'';
+            display:block; height:1px;
+            background:var(--w-terr);
+            transform:scaleX(0); transform-origin:left;
+            transition:transform .35s ease;
+            margin-top:2px;
+        }
+        .nav-links a:hover::after { transform:scaleX(1); }
+        nav { transition: box-shadow .3s; }
 
         /* CONTAINER */
         .container {
@@ -223,5 +234,13 @@
     </nav>
     <p class="footer-copy">© 2026 Ishrat Tuli · CUNY Hunter College</p>
 </footer>
+<script>
+    const nav = document.querySelector('nav.site-nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 30
+            ? '0 4px 24px rgba(46,36,32,.08)'
+            : 'none';
+    });
+</script>
 </body>
 </html>
