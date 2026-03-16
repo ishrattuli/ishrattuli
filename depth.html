@@ -3,200 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,300;0,400;1,300&family=Alex+Brush&display=swap" rel="stylesheet">
+    <title>Shallow Depth of Field — Ishrat Tuli</title>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --w-sand:   #f0e8df;
-            --w-peach:  #f0cfc0;
-            --w-terr:   #d4836a;
-            --w-blush:  #dbb4b0;
-            --w-mauve:  #9e7a84;
-            --w-dusty:  #c4a8a0;
-            --w-sky:    #c0d0da;
-            --w-ink:    #2e2420;
-            --w-cream:  #faf6f2;
-            --w-gold:   #c8913a;
+            --degas-peach: #f5dcc8;
+            --degas-sage:  #b8c5a8;
+            --degas-blue:  #9db4c8;
+            --degas-pink:  #e8b4bc;
+            --degas-cream: #f9f5f0;
+            --degas-gold:  #d4af37;
+            --degas-dark:  #3a3228;
         }
         html { scroll-behavior: smooth; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family:'Lato', sans-serif;
-            background:var(--w-cream);
-            color:var(--w-ink);
-            overflow-x:hidden;
-        }
+        body { font-family:'Cormorant Garamond', serif; background:#f9f5f0; color:var(--degas-dark); overflow-x:hidden; position:relative; }
         body::before {
-            content:'';
-            position:fixed; inset:0; pointer-events:none; z-index:0;
-            background:
-                radial-gradient(ellipse 60% 40% at 10% 20%, rgba(240,207,192,.25) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 60% at 90% 30%, rgba(192,208,218,.2) 0%, transparent 70%),
-                radial-gradient(ellipse 70% 50% at 50% 85%, rgba(219,180,176,.15) 0%, transparent 70%);
+            content:''; position:fixed; top:0; left:0; width:100%; height:100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(245,220,200,.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(184,197,168,.12) 0%, transparent 50%);
+            pointer-events:none; z-index:0;
+        }
+        body::after {
+            content:''; position:fixed; top:0; left:0; width:100%; height:100%;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" /><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+            pointer-events:none; z-index:0;
         }
         /* NAV */
-        nav.site-nav {
-            position:fixed; top:0; left:0; width:100%; z-index:100;
-            background:rgba(250,246,242,.92);
-            backdrop-filter:blur(14px);
-            border-bottom:1px solid rgba(196,168,160,.2);
-            height:62px;
-            display:flex; align-items:center; justify-content:space-between;
-            padding:0 3rem;
+        .site-nav {
+            position:fixed; top:0; left:0; width:100%; z-index:200;
+            background:rgba(249,245,240,.93); backdrop-filter:blur(14px);
+            border-bottom:1px solid rgba(212,175,55,.3);
+            padding:0 3rem; display:flex; align-items:center; justify-content:space-between;
+            height:64px; transition:box-shadow .3s;
         }
-        .nav-left { display:flex; align-items:baseline; gap:.4rem; }
-        .nav-cursive { font-family:'Alex Brush', cursive; font-size:1.6rem; color:var(--w-mauve); line-height:1; }
-        .nav-serif { font-family:'Bodoni Moda', serif; font-size:.85rem; letter-spacing:.12em; color:var(--w-ink); opacity:.5; text-transform:uppercase; }
+        .nav-logo { font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:700; letter-spacing:.08em; color:var(--degas-dark); text-decoration:none; display:flex; align-items:center; gap:.55rem; }
+        .nav-logo-dot { width:6px; height:6px; border-radius:50%; background:var(--degas-gold); display:inline-block; }
         .nav-links { display:flex; gap:2rem; list-style:none; }
-        .nav-links a { font-size:.73rem; letter-spacing:.2em; text-transform:uppercase; color:var(--w-mauve); text-decoration:none; font-weight:400; transition:color .2s; }
-        .nav-links a:hover { color:var(--w-ink); }
-        .nav-links a::after {
-            content:'';
-            display:block; height:1px;
-            background:var(--w-terr);
-            transform:scaleX(0); transform-origin:left;
-            transition:transform .35s ease;
-            margin-top:2px;
-        }
-        .nav-links a:hover::after { transform:scaleX(1); }
-        nav { transition: box-shadow .3s; }
-
+        .nav-links a { font-family:'Cormorant Garamond', serif; font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; color:var(--degas-dark); text-decoration:none; opacity:.65; transition:opacity .25s; position:relative; padding-bottom:2px; }
+        .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--degas-gold); transition:width .3s; }
+        .nav-links a:hover { opacity:1; }
+        .nav-links a:hover::after { width:100%; }
         /* CONTAINER */
-        .container {
-            max-width:900px; margin:0 auto;
-            padding:100px 3rem 80px;
-            position:relative; z-index:1;
-        }
-
+        .container { max-width:900px; margin:0 auto; padding:100px 3rem 80px; position:relative; z-index:1; }
         /* BACK LINK */
-        .back-link {
-            display:inline-flex; align-items:center; gap:.5rem;
-            margin-bottom:2.5rem;
-            font-size:.75rem; letter-spacing:.2em; text-transform:uppercase;
-            color:var(--w-mauve); text-decoration:none;
-            border-bottom:1px solid rgba(158,122,132,.3);
-            padding-bottom:2px;
-            transition:color .2s, border-color .2s;
-        }
-        .back-link:hover { color:var(--w-ink); border-color:var(--w-ink); }
-
+        .back-link { display:inline-block; margin-bottom:2.5rem; padding:10px 26px; background:var(--degas-gold); color:var(--degas-dark); text-decoration:none; font-family:'Playfair Display', serif; font-size:1rem; border-radius:4px; transition:all .3s; box-shadow:0 4px 15px rgba(212,175,55,.3); }
+        .back-link:hover { background:#c39d2f; transform:translateY(-2px); box-shadow:0 6px 20px rgba(212,175,55,.4); }
         /* PAGE HEADER */
-        .page-header {
-            text-align:center; margin-bottom:3rem;
+        .page-header { text-align:center; margin-bottom:3rem; animation:fadeInDown .9s ease; }
+        .page-header h1 { font-family:'Playfair Display', serif; font-size:clamp(1.6rem,4vw,2.8rem); color:var(--degas-dark); line-height:1.2; margin-bottom:.5rem; font-weight:700; letter-spacing:1px; }
+        .page-header .meta { font-size:1.1rem; color:var(--degas-dark); font-style:italic; opacity:.75; font-weight:300; }
+        /* ORNATE FRAME */
+        .ornate-frame {
+            background:var(--degas-cream);
+            border:16px solid var(--degas-gold);
+            box-shadow: inset 0 0 0 2px var(--degas-dark), inset 0 0 0 10px var(--degas-cream), inset 0 0 0 12px var(--degas-gold), 0 15px 40px rgba(58,50,40,.25);
+            padding:40px; margin-bottom:40px; position:relative;
+            animation:fadeInUp .9s ease; animation-fill-mode:both;
         }
-        .page-header h1 {
-            font-family:'Bodoni Moda', serif;
-            font-size:clamp(1.6rem,4vw,2.6rem);
-            color:var(--w-ink); line-height:1.2;
-            margin-bottom:.6rem; font-weight:400;
-        }
-        .page-header .meta {
-            font-style:italic; font-size:.95rem;
-            color:var(--w-mauve); opacity:.8;
-        }
-        .header-rule {
-            width:50px; height:2px;
-            background:linear-gradient(to right, var(--w-terr), transparent);
-            margin:.8rem auto 0;
-        }
-
-        /* CONTENT CARDS */
-        .wc-card {
-            background:rgba(255,255,255,.6);
-            border-radius:4px;
-            border:1px solid rgba(196,168,160,.2);
-            border-left:3px solid var(--w-peach);
-            padding:2.5rem 3rem;
-            margin-bottom:2rem;
-            box-shadow:0 4px 28px rgba(46,36,32,.05);
-            position:relative; overflow:hidden;
-        }
-        .wc-card::before {
-            content:'';
-            position:absolute; top:0; right:0;
-            width:80px; height:80px;
-            background: radial-gradient(ellipse at top right, rgba(240,207,192,.3), transparent 70%);
-        }
-
-        /* IMAGE FRAMES */
-        .img-card {
-            background:rgba(255,255,255,.6);
-            border-radius:4px;
-            border:1px solid rgba(196,168,160,.2);
-            padding:2rem;
-            margin-bottom:2rem;
-            box-shadow:0 4px 28px rgba(46,36,32,.05);
-        }
-        .main-image {
-            width:100%; max-width:800px;
-            margin:0 auto; display:block;
-            border:1px solid rgba(196,168,160,.3);
-            box-shadow:0 8px 28px rgba(46,36,32,.1);
-        }
-        .double-image-container {
-            display:flex; gap:1.5rem;
-            justify-content:center; align-items:flex-start; flex-wrap:wrap;
-        }
-        .double-image-container .main-image {
-            width:calc(50% - .75rem); max-width:390px;
-        }
-
-        /* TYPOGRAPHY */
-        .wc-card h2 {
-            font-family:'Bodoni Moda', serif;
-            font-size:1.4rem; color:var(--w-ink);
-            margin-bottom:1.2rem; font-weight:400;
-        }
-        .wc-card p {
-            font-size:1rem; line-height:1.95; font-weight:300;
-            color:var(--w-ink); margin-bottom:1rem;
-        }
-        .wc-card p:last-child { margin-bottom:0; }
-        .wc-card blockquote {
-            border-left:3px solid var(--w-peach);
-            background:rgba(240,207,192,.1);
-            padding:1rem 1.5rem; margin:1.5rem 0;
-            font-style:italic;
-        }
-        .inline-link {
-            color:var(--w-gold); text-decoration:none;
-            border-bottom:1px solid rgba(200,145,58,.4);
-            transition:all .3s;
-        }
-        .inline-link:hover { color:var(--w-terr); border-bottom-color:var(--w-terr); }
-
+        .ornate-frame::before, .ornate-frame::after { content:''; position:absolute; width:40px; height:40px; border:3px solid var(--degas-gold); }
+        .ornate-frame::before { top:-3px; left:-3px; border-right:none; border-bottom:none; }
+        .ornate-frame::after  { bottom:-3px; right:-3px; border-left:none; border-top:none; }
+        .ornate-frame:nth-child(2) { animation-delay:.15s; }
+        /* CONTENT TYPOGRAPHY */
+        .ornate-frame h2 { font-family:'Playfair Display', serif; font-size:1.6rem; color:var(--degas-dark); margin-bottom:1.2rem; font-weight:600; }
+        .ornate-frame p { font-size:1.05rem; line-height:1.95; color:var(--degas-dark); margin-bottom:1rem; }
+        .ornate-frame p:last-child { margin-bottom:0; }
+        /* IMAGE */
+        .main-image { width:100%; max-width:800px; margin:0 auto; display:block; border:8px solid var(--degas-pink); box-shadow:0 10px 30px rgba(58,50,40,.2); }
+        .double-image-container { display:flex; gap:1.5rem; justify-content:center; align-items:flex-start; flex-wrap:wrap; }
+        .double-image-container .main-image { width:calc(50% - .75rem); max-width:390px; }
+        /* INLINE LINK */
+        .inline-link { color:var(--degas-gold); text-decoration:none; border-bottom:2px solid var(--degas-gold); transition:all .3s; font-weight:600; }
+        .inline-link:hover { color:#c39d2f; border-bottom-color:#c39d2f; }
         /* FOOTER */
-        footer.site-footer {
-            background:var(--w-ink);
-            color:rgba(250,246,242,.5);
-            padding:3.5rem 2rem 2rem;
-            text-align:center;
-            position:relative; z-index:1;
-        }
-        .footer-cursive { font-family:'Alex Brush', cursive; font-size:2.2rem; color:rgba(250,246,242,.85); margin-bottom:.2rem; display:block; }
-        .footer-sub { font-style:italic; font-size:.85rem; opacity:.4; margin-bottom:1.5rem; }
-        .footer-rule { width:40px; height:1px; background:rgba(200,145,58,.35); margin:0 auto 1.5rem; }
-        .footer-nav { display:flex; gap:2rem; justify-content:center; margin-bottom:1.8rem; }
-        .footer-nav a { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(250,246,242,.3); text-decoration:none; transition:color .2s; }
-        .footer-nav a:hover { color:rgba(250,246,242,.7); }
-        .footer-copy { font-size:.7rem; opacity:.25; letter-spacing:.08em; }
-
-        @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-        .page-header { animation:fadeUp .8s ease both; }
-        .wc-card, .img-card { animation:fadeUp .8s ease both; }
-        .wc-card:nth-child(2), .img-card:nth-child(2) { animation-delay:.15s; }
-
-        @media(max-width:768px){
-            nav.site-nav { padding:0 1.2rem; }
-            .container { padding:90px 1.2rem 60px; }
-            .wc-card { padding:1.5rem; }
-            .double-image-container .main-image { width:100%; max-width:100%; }
-        }
+        footer.site-footer { background:var(--degas-dark); color:var(--degas-cream); padding:48px 2rem 36px; text-align:center; position:relative; z-index:1; }
+        .footer-inner { max-width:600px; margin:0 auto; }
+        .footer-top { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:24px; }
+        .footer-rule { display:block; width:80px; height:1px; background:linear-gradient(to right, transparent, rgba(212,175,55,.6)); }
+        .footer-rule:last-child { background:linear-gradient(to left, transparent, rgba(212,175,55,.6)); }
+        .footer-diamond { font-size:.55rem; color:var(--degas-gold); opacity:.8; }
+        .footer-name { font-family:'Playfair Display', serif; font-size:1.5rem; font-weight:600; letter-spacing:.06em; color:var(--degas-cream); margin-bottom:6px; }
+        .footer-tagline { font-family:'Cormorant Garamond', serif; font-size:.9rem; font-style:italic; letter-spacing:.12em; color:rgba(249,245,240,.45); margin-bottom:20px; }
+        .footer-nav { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:24px; }
+        .footer-nav a { font-family:'Cormorant Garamond', serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(212,175,55,.75); text-decoration:none; transition:color .25s; }
+        .footer-nav a:hover { color:var(--degas-gold); }
+        .footer-sep { color:rgba(249,245,240,.2); font-size:.8rem; }
+        .footer-credit { font-family:'Cormorant Garamond', serif; font-size:.75rem; letter-spacing:.1em; color:rgba(249,245,240,.25); }
+        /* ANIMATIONS */
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+        @media(max-width:768px){ .site-nav{padding:0 1.2rem;} .container{padding:90px 1.2rem 60px;} .ornate-frame{padding:24px; border-width:10px;} .double-image-container .main-image{width:100%;max-width:100%;} }
     </style>
-<title>Shallow Depth of Field — Ishrat Tuli</title>
 </head>
 <body>
-<nav class="site-nav">
-    <a href="index.html" style="text-decoration:none"><div class="nav-left"><span class="nav-cursive">Ishrat</span><span class="nav-serif">Tuli</span></div></a>
+<nav class="site-nav" id="siteNav">
+    <a href="index.html" class="nav-logo">Ishrat <span class="nav-logo-dot"></span> Tuli</a>
     <ul class="nav-links">
         <li><a href="index.html#statement">Statement</a></li>
         <li><a href="index.html#creative">Creative</a></li>
@@ -204,42 +105,33 @@
     </ul>
 </nav>
 <div class="container">
-    <a href="index.html" class="back-link">← Back to Home</a>
-    <div class="page-header">
-        <h1>Shallow Depth of Field</h1>
-        <p class="meta">Taken with Canon EOS R6 Mark II</p>
-        <div class="header-rule"></div>
-    </div>
-    <div class="img-card">
-        <div class="double-image-container">
-            <img src="shallowog.JPG" alt="Shallow Depth of Field — Original" class="main-image">
-            <img src="shallowdepth.jpg" alt="Shallow Depth of Field — Edited" class="main-image">
-        </div>
-    </div>
-    <div class="wc-card">
-        <h2>Shallow Depth of Field</h2>
-        <p>Original (left), Edited (right).</p>
-        <p>I stationed this centerpiece to make sure it stood out against the background. I adjusted the aperture to account for the lack of light in this room, keeping it at 2.8, the shutterspeed at 1/40 and the ISO in the medium numbers. However, the final product didn't display as much light as I wanted, so I used the curve tool in Photoshop to adjust the light in the top corner, brightening that area but darkening the lower left. These edits work together to emphasize the flower pot in the center.</p>
-    </div>
+    <a href="index.html#creative" class="back-link">← Back to Home</a>
+    <div class="page-header"><h1>Shallow Depth of Field</h1><p class="meta">Taken with Canon EOS R6 Mark II</p></div>
+<div class="ornate-frame"><div class="double-image-container"><img src="shallowog.JPG" alt="Original" class="main-image"><img src="shallowdepth.jpg" alt="Edited" class="main-image"></div></div>
+<div class="ornate-frame">
+    <h2>Shallow Depth of Field</h2>
+    <p>Original (left), Edited (right).</p>
+    <p>I stationed this centerpiece to make sure it stood out against the background. I adjusted the aperture to account for the lack of light in this room, keeping it at 2.8, the shutterspeed at 1/40 and the ISO in the medium numbers. However, the final product did not display as much light as I wanted, so I used the curve tool in Photoshop to adjust the light in the top corner, brightening that area but darkening the lower left. These edits work together to emphasize the flower pot in the center.</p>
+</div>
 </div>
 <footer class="site-footer">
-    <span class="footer-cursive">Ishrat Tuli</span>
-    <p class="footer-sub">Media Studies Student &amp; Multimedia Journalist</p>
-    <div class="footer-rule"></div>
-    <nav class="footer-nav">
-        <a href="index.html#statement">Statement</a>
-        <a href="index.html#creative">Creative</a>
-        <a href="index.html#written">Written</a>
-    </nav>
-    <p class="footer-copy">© 2026 Ishrat Tuli · CUNY Hunter College</p>
+    <div class="footer-inner">
+        <div class="footer-top"><span class="footer-rule"></span><span class="footer-diamond">◆</span><span class="footer-rule"></span></div>
+        <p class="footer-name">Ishrat Tuli</p>
+        <p class="footer-tagline">Media Studies Student &amp; Multimedia Journalist</p>
+        <nav class="footer-nav">
+            <a href="index.html#statement">Statement</a><span class="footer-sep">·</span>
+            <a href="index.html#creative">Creative</a><span class="footer-sep">·</span>
+            <a href="index.html#written">Written</a>
+        </nav>
+        <p class="footer-credit">© 2026 Ishrat Tuli · CUNY Hunter College</p>
+    </div>
 </footer>
 <script>
-    const nav = document.querySelector('nav.site-nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 30
-            ? '0 4px 24px rgba(46,36,32,.08)'
-            : 'none';
-    });
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => { nav.style.boxShadow = window.scrollY > 30 ? '0 4px 24px rgba(58,50,40,.1)' : '0 2px 20px rgba(58,50,40,.06)'; });
+    window.addEventListener('load', () => { if (window.location.hash) { const t = document.querySelector(window.location.hash); if (t) setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); } });
+    document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', function(e) { const href = this.getAttribute('href'); const isIndexLink = href && href.startsWith('index.html#'); const onIndex = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/'); if (isIndexLink && onIndex) { e.preventDefault(); const id = href.split('#')[1]; const target = document.getElementById(id); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
 </script>
 </body>
 </html>
