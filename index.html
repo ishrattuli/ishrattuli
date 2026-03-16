@@ -4,560 +4,480 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ishrat Tuli's Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,300;0,400;1,300&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --w-sand:   #f0e8df;
-            --w-peach:  #f0cfc0;
-            --w-terr:   #d4836a;
-            --w-blush:  #dbb4b0;
-            --w-mauve:  #9e7a84;
-            --w-dusty:  #c4a8a0;
-            --w-sky:    #c0d0da;
-            --w-ink:    #2e2420;
-            --w-cream:  #faf6f2;
-            --w-gold:   #c8913a;
+            --degas-peach: #f5dcc8;
+            --degas-sage: #b8c5a8;
+            --degas-blue: #9db4c8;
+            --degas-pink: #e8b4bc;
+            --degas-cream: #f9f5f0;
+            --degas-gold: #d4af37;
+            --degas-dark: #3a3228;
         }
+
         html { scroll-behavior: smooth; }
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family:'Lato', sans-serif;
-            background:var(--w-cream);
-            color:var(--w-ink);
-            overflow-x:hidden;
+            font-family: 'Cormorant Garamond', serif;
+            background: #f9f5f0;
+            color: var(--degas-dark);
+            overflow-x: hidden;
+            position: relative;
+            padding: 0 100px;
         }
 
-        /* Subtle watercolor wash background */
         body::before {
-            content:'';
-            position:fixed; inset:0; pointer-events:none; z-index:0;
-            background:
-                radial-gradient(ellipse 60% 40% at 10% 20%, rgba(240,207,192,.25) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 60% at 90% 30%, rgba(192,208,218,.2) 0%, transparent 70%),
-                radial-gradient(ellipse 70% 50% at 50% 85%, rgba(219,180,176,.15) 0%, transparent 70%);
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(245,220,200,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(184,197,168,0.12) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* ── NAV ── */
-        nav {
-            position:fixed; top:0; left:0; width:100%; z-index:100;
-            background:rgba(250,246,242,.92);
-            backdrop-filter:blur(14px);
-            border-bottom:1px solid rgba(196,168,160,.2);
-            height:62px;
-            display:flex; align-items:center; justify-content:space-between;
-            padding:0 3rem;
-        }
-        .nav-left {
-            display:flex; align-items:baseline; gap:.4rem;
-        }
-        .nav-cursive {
-            font-family:'Alex Brush', cursive;
-            font-size:1.6rem; color:var(--w-mauve);
-            line-height:1;
-        }
-        .nav-serif {
-            font-family:'Bodoni Moda', serif;
-            font-size:.85rem; letter-spacing:.12em;
-            color:var(--w-ink); opacity:.5;
-            text-transform:uppercase;
-        }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
-        .nav-links a {
-            font-size:.73rem; letter-spacing:.2em; text-transform:uppercase;
-            color:var(--w-mauve); text-decoration:none; font-weight:400;
-            transition:color .2s;
-        }
-        .nav-links a:hover { color:var(--w-ink); }
-        .nav-links a::after {
-            content:'';
-            display:block; height:1px;
-            background:var(--w-terr);
-            transform:scaleX(0); transform-origin:left;
-            transition:transform .35s ease;
-            margin-top:2px;
-        }
-        .nav-links a:hover::after,
-        .nav-links a.active::after { transform:scaleX(1); }
-        .nav-links a.active { color:var(--w-ink); }
-        nav { transition: box-shadow .3s; }
-
-        /* ── HERO ── */
-        .hero {
-            position:relative; z-index:1;
-            min-height:100vh;
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            align-items:center;
-            max-width:1100px; margin:0 auto;
-            padding:100px 3rem 60px;
-            gap:4rem;
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" /><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .hero-text {}
-        .hero-eyebrow {
-            font-size:.7rem; letter-spacing:.35em; text-transform:uppercase;
-            color:var(--w-terr); margin-bottom:1rem; display:block;
+        /* ── HEADER NAV ── */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 200;
+            background: rgba(249,245,240,.93);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(212,175,55,.3);
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            box-shadow: 0 2px 20px rgba(58,50,40,.06);
+            transition: box-shadow .3s;
         }
-        .hero-name {
-            font-family:'Alex Brush', cursive;
-            font-size:clamp(3.5rem,6vw,5.5rem);
-            color:var(--w-ink); line-height:1;
-            margin-bottom:.4rem;
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; font-weight: 700;
+            letter-spacing: .08em; color: var(--degas-dark);
+            text-decoration: none;
+            display: flex; align-items: center; gap: .55rem;
         }
-        .hero-name-serif {
-            font-family:'Bodoni Moda', serif;
-            font-size:clamp(1rem,2vw,1.3rem);
-            letter-spacing:.3em; text-transform:uppercase;
-            color:var(--w-mauve); margin-bottom:1.5rem;
+        .header-logo-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--degas-gold); display: inline-block;
         }
-        .hero-sub {
-            font-style:italic; font-weight:300;
-            color:var(--w-ink); opacity:.6;
-            font-size:1rem; line-height:1.7; margin-bottom:2rem;
+        .header-centre {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: .75rem;
+            pointer-events: none;
         }
-        .wc-rule {
-            width:60px; height:2px;
-            background:linear-gradient(to right, var(--w-terr), transparent);
-            margin-bottom:2rem;
+        .header-rule {
+            width: 36px; height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212,175,55,.6));
         }
-        .tags { display:flex; flex-wrap:wrap; gap:.5rem; }
-        .tag {
-            padding:.28rem .85rem;
-            border-radius:4px;
-            font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
-            border:1px solid;
+        .header-rule.rev { background: linear-gradient(to left, transparent, rgba(212,175,55,.6)); }
+        .header-ornament {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: .75rem; letter-spacing: .35em; text-transform: uppercase;
+            color: rgba(58,50,40,.45);
         }
-        .tag-a { background:rgba(240,207,192,.3); color:var(--w-terr); border-color:rgba(212,131,106,.25); }
-        .tag-b { background:rgba(158,122,132,.08); color:var(--w-mauve); border-color:rgba(158,122,132,.25); }
-        .tag-c { background:rgba(192,208,218,.2); color:#5a7a8a; border-color:rgba(192,208,218,.4); }
+        .header-nav {
+            display: flex; align-items: center; gap: 2rem; list-style: none;
+        }
+        .header-nav a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: .85rem; letter-spacing: .18em; text-transform: uppercase;
+            color: var(--degas-dark); text-decoration: none;
+            opacity: .65; transition: opacity .25s, color .25s;
+            position: relative; padding-bottom: 2px;
+        }
+        .header-nav a::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1px; background: var(--degas-gold);
+            transition: width .3s;
+        }
+        .header-nav a:hover { opacity: 1; }
+        .header-nav a:hover::after { width: 100%; }
+        .header-nav a.active { opacity: 1; }
+        .header-nav a.active::after { width: 100%; }
 
-        /* Portrait side */
-        .hero-portrait {
-            display:flex; align-items:center; justify-content:center;
-            position:relative;
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 1000px; margin: 0 auto;
+            padding: 140px 80px 100px;
+            position: relative; z-index: 1;
         }
-        /* Watercolor splash shape behind portrait */
-        .splash {
-            position:absolute;
-            width:360px; height:360px;
-            border-radius:55% 45% 50% 50% / 45% 55% 50% 50%;
-            background:
-                radial-gradient(ellipse at 40% 40%, rgba(240,207,192,.45) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(219,180,176,.3) 0%, transparent 60%);
-            filter:blur(20px);
+
+        header {
+            text-align: center; margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
         }
-        .portrait-wrap {
-            position:relative; z-index:1;
-            width:280px; height:340px;
-            border-radius:50% 50% 48% 52%;
-            overflow:hidden;
-            border:1px solid rgba(196,168,160,.35);
+        .headshot-frame {
+            width: 280px; height: 280px;
+            margin: 60px auto 40px;
+            border: 12px solid var(--degas-gold);
+            border-radius: 50%;
             box-shadow:
-                0 2px 0 rgba(240,207,192,.8),
-                0 4px 30px rgba(46,36,32,.12),
-                inset 0 0 30px rgba(240,207,192,.1);
+                0 0 0 4px var(--degas-cream),
+                0 0 0 8px var(--degas-gold),
+                0 20px 40px rgba(58,50,40,0.3);
+            background: linear-gradient(135deg, var(--degas-sage), var(--degas-blue));
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
-        .portrait-wrap img { width:100%; height:100%; object-fit:cover; }
+        .headshot-frame img { width: 140%; height: 140%; object-fit: cover; }
 
-        /* Decorative painted strokes */
-        .stroke {
-            position:absolute; pointer-events:none;
-            border-radius:50%; opacity:.15;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; font-weight: 700;
+            color: var(--degas-dark); margin-bottom: 15px; letter-spacing: 2px;
         }
-        .stroke-1 { width:120px;height:14px; background:var(--w-peach); top:10%;right:-10%; transform:rotate(-8deg); filter:blur(4px); }
-        .stroke-2 { width:80px;height:10px; background:var(--w-blush); bottom:20%;left:-5%; transform:rotate(12deg); filter:blur(3px); }
-
-        /* ── MAIN ── */
-        main { position:relative; z-index:1; }
-        .section { max-width:1080px; margin:0 auto; padding:100px 4rem; }
-
-        .sec-head { margin-bottom:3rem; }
-        .sec-label {
-            font-size:.72rem; letter-spacing:.35em; text-transform:uppercase;
-            color:var(--w-terr); display:block; margin-bottom:.6rem;
-        }
-        .sec-title {
-            font-family:'Bodoni Moda', serif;
-            font-size:2.3rem; color:var(--w-ink);
-            display:flex; align-items:center; gap:.8rem;
-        }
-        .sec-title::after {
-            content:'';
-            flex:1; height:1px;
-            background:linear-gradient(to right, rgba(196,168,160,.4), transparent);
+        .subtitle {
+            font-size: 1.5rem; color: var(--degas-dark);
+            font-style: italic; opacity: .85; font-weight: 300;
         }
 
-        /* Statement */
-        .prose-card {
-            background:rgba(255,255,255,.55);
-            border-radius:4px;
-            border:1px solid rgba(196,168,160,.2);
-            border-left:3px solid var(--w-peach);
-            padding:3rem 3.5rem;
-            box-shadow:0 4px 28px rgba(46,36,32,.05);
+        /* ── ORNATE FRAMES ── */
+        .ornate-frame {
+            background: var(--degas-cream);
+            border: 16px solid var(--degas-gold);
+            box-shadow:
+                inset 0 0 0 2px var(--degas-dark),
+                inset 0 0 0 10px var(--degas-cream),
+                inset 0 0 0 12px var(--degas-gold),
+                0 15px 40px rgba(58,50,40,0.25);
+            padding: 40px; margin-bottom: 60px;
+            position: relative;
+            animation: fadeInUp 1s ease; animation-fill-mode: both;
         }
-        .prose-card p {
-            font-size:1.15rem; line-height:2.1; font-weight:300;
-            color:var(--w-ink);
+        .ornate-frame::before, .ornate-frame::after {
+            content: '';
+            position: absolute; width: 40px; height: 40px;
+            border: 3px solid var(--degas-gold);
+        }
+        .ornate-frame::before { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+        .ornate-frame::after  { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+
+        .frame-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; color: var(--degas-dark);
+            margin-bottom: 25px; text-align: center;
+            font-weight: 600; letter-spacing: 1px;
         }
 
-        /* Cards */
-        .cards-scroll {
-            display:flex; gap:1.6rem;
-            overflow-x:auto; padding-bottom:1rem;
-            scrollbar-width:thin;
-            scrollbar-color:rgba(196,168,160,.4) transparent;
+        .scroll-content {
+            max-height: 350px; overflow-y: auto;
+            padding-right: 15px; line-height: 1.8; font-size: 1.1rem;
         }
-        .cards-scroll::-webkit-scrollbar { height:4px; }
-        .cards-scroll::-webkit-scrollbar-thumb { background:rgba(196,168,160,.4); border-radius:10px; }
+        .scroll-content.horizontal {
+            max-height: none; overflow-y: hidden; overflow-x: auto;
+            padding-right: 0; padding-bottom: 15px;
+            display: flex; gap: 30px;
+        }
+        .scroll-content::-webkit-scrollbar { width: 10px; height: 10px; }
+        .scroll-content::-webkit-scrollbar-track { background: rgba(184,197,168,.2); border-radius: 10px; }
+        .scroll-content::-webkit-scrollbar-thumb { background: var(--degas-gold); border-radius: 10px; }
+        .scroll-content::-webkit-scrollbar-thumb:hover { background: #c39d2f; }
 
-        .card {
-            flex-shrink:0; width:270px;
-            border-radius:3px; overflow:hidden;
-            background:rgba(255,255,255,.6);
-            border:1px solid rgba(196,168,160,.18);
-            box-shadow:0 3px 16px rgba(46,36,32,.07);
-            text-decoration:none; color:inherit; display:block;
-            transition:transform .3s, box-shadow .3s;
+        /* ── WORK CARDS ── */
+        .work-item {
+            background: rgba(255,255,255,.5);
+            padding: 0; border: none; border-radius: 8px;
+            transition: all .3s ease; flex-shrink: 0; width: 280px;
+            overflow: hidden; box-shadow: 0 4px 15px rgba(58,50,40,.15);
         }
-        .card:hover { transform:translateY(-5px); box-shadow:0 10px 28px rgba(46,36,32,.12); }
-        .card-img { height:240px; overflow:hidden; background:var(--w-sand); }
-        .card-img img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
-        .card:hover .card-img img { transform:scale(1.05); }
-        .card-body { padding:1.1rem 1.2rem 1.3rem; border-top:2px solid var(--w-peach); }
-        .card-body h3 {
-            font-family:'Bodoni Moda', serif;
-            font-size:1rem; color:var(--w-ink); line-height:1.45;
+        .work-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 8px 25px rgba(58,50,40,.25);
         }
-
-        /* Written */
-        .written-list { display:flex; flex-direction:column; gap:.75rem; }
-        .witem {
-            display:grid; grid-template-columns:3px 1fr;
-            gap:1.2rem;
-            background:rgba(255,255,255,.55);
-            border-radius:3px;
-            overflow:hidden;
-            border:1px solid rgba(196,168,160,.18);
-            box-shadow:0 2px 12px rgba(46,36,32,.05);
-            text-decoration:none; color:inherit;
-            transition:transform .25s, box-shadow .25s;
+        .work-thumbnail {
+            width: 100%; height: 350px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--degas-sage), var(--degas-blue));
+            border-bottom: 5px solid var(--degas-pink);
         }
-        .witem:hover { transform:translateX(6px); box-shadow:0 4px 18px rgba(46,36,32,.09); }
-        .witem-bar { background:linear-gradient(to bottom, var(--w-peach), var(--w-blush)); }
-        .witem-body { padding:1.4rem 1.4rem 1.4rem 0; }
-        .witem-body h3 {
-            font-family:'Bodoni Moda', serif;
-            font-size:1.08rem; color:var(--w-ink);
-            margin-bottom:.4rem; line-height:1.5;
-        }
-        .witem-body .course {
-            font-size:.82rem; letter-spacing:.1em;
-            color:var(--w-mauve); font-style:italic;
+        .work-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .work-text { padding: 20px; }
+        .work-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem; margin-bottom: 10px; color: var(--degas-dark);
         }
 
-        /* ── FOOTER ── */
-        footer {
-            position:relative; z-index:1;
-            background:var(--w-ink);
-            color:rgba(250,246,242,.5);
-            padding:4rem 2rem 2.5rem;
-            text-align:center;
+        /* ── ASSIGNMENT ITEMS ── */
+        .assignment-item {
+            background: rgba(255,255,255,.5);
+            padding: 20px; margin-bottom: 15px;
+            border-left: 5px solid var(--degas-sage);
+            border-radius: 4px; transition: all .3s ease;
         }
-        .footer-cursive {
-            font-family:'Alex Brush', cursive;
-            font-size:2.5rem; color:rgba(250,246,242,.85);
-            margin-bottom:.2rem; display:block;
+        .assignment-item:hover {
+            transform: translateX(10px);
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 8px 20px rgba(58,50,40,.15);
         }
-        .footer-sub {
-            font-style:italic; font-size:.85rem;
-            opacity:.4; margin-bottom:1.8rem;
+        .assignment-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; margin-bottom: 8px; color: var(--degas-dark);
         }
-        .f-rule {
-            width:40px; height:1px;
-            background:rgba(200,145,58,.35);
-            margin:0 auto 1.8rem;
+        .assignment-item .course {
+            font-style: italic; color: var(--degas-dark);
+            opacity: .7; font-size: .95rem;
         }
-        .footer-nav { display:flex; gap:2rem; justify-content:center; margin-bottom:2rem; }
-        .footer-nav a {
-            font-size:.7rem; letter-spacing:.22em; text-transform:uppercase;
-            color:rgba(250,246,242,.3); text-decoration:none;
-            transition:color .2s;
-        }
-        .footer-nav a:hover { color:rgba(250,246,242,.7); }
-        .footer-copy { font-size:.7rem; opacity:.25; letter-spacing:.08em; }
 
-        @media(max-width:768px){
-            .hero { grid-template-columns:1fr; padding:100px 1.5rem 60px; gap:2rem; text-align:center; }
-            .hero-portrait { order:-1; }
-            .wc-rule { margin-left:auto; margin-right:auto; }
-            .tags { justify-content:center; }
-            .sec-title::after { display:none; }
-            .section { padding:70px 1.5rem; }
-            .prose-card { padding:1.8rem; }
+        /* ── BACKGROUND ACCENTS ── */
+        .painting-accent { position: fixed; opacity: .15; z-index: 0; pointer-events: none; }
+        .painting-accent.ballet-1 {
+            top: 10%; right: 5%; width: 300px; height: 400px;
+            background: linear-gradient(135deg, var(--degas-pink) 0%, var(--degas-peach) 100%);
+            border-radius: 50% 50% 40% 60%; transform: rotate(-15deg);
+            animation: float 8s ease-in-out infinite;
+        }
+        .painting-accent.ballet-2 {
+            bottom: 15%; left: 8%; width: 250px; height: 350px;
+            background: linear-gradient(45deg, var(--degas-blue) 0%, var(--degas-sage) 100%);
+            border-radius: 60% 40% 50% 50%; transform: rotate(12deg);
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInUp   { from{opacity:0;transform:translateY(30px)}  to{opacity:1;transform:translateY(0)} }
+        @keyframes float {
+            0%,100% { transform: translateY(0) rotate(-15deg); }
+            50%      { transform: translateY(-20px) rotate(-15deg); }
+        }
+        .ornate-frame:nth-child(2) { animation-delay: .2s; }
+        .ornate-frame:nth-child(3) { animation-delay: .4s; }
+        .ornate-frame:nth-child(4) { animation-delay: .6s; }
+
+        @media(max-width:768px) {
+            body { padding: 0; }
+            .site-header { padding: 0 1.5rem; }
+            .header-centre { display: none; }
+            .header-nav { gap: 1.2rem; }
+            .container { padding: 100px 20px 40px; }
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .ornate-frame { padding: 25px; border-width: 10px; }
+            .frame-title { font-size: 1.5rem; }
+            .painting-accent { display: none; }
+            .scroll-content.horizontal { gap: 20px; }
+            .work-item { width: 240px; }
+            .work-thumbnail { height: 300px; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-    <div class="nav-left">
-        <span class="nav-cursive">Ishrat</span>
-        <span class="nav-serif">Tuli</span>
+<!-- HEADER NAV -->
+<header class="site-header" id="siteHeader">
+    <a href="#" class="header-logo">
+        Ishrat <span class="header-logo-dot"></span> Tuli
+    </a>
+    <div class="header-centre">
+        <span class="header-rule"></span>
+        <span class="header-ornament">Visual &amp; Written Works</span>
+        <span class="header-rule rev"></span>
     </div>
-    <ul class="nav-links">
+    <ul class="header-nav">
         <li><a href="#statement">Statement</a></li>
         <li><a href="#creative">Creative</a></li>
         <li><a href="#written">Written</a></li>
     </ul>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-text">
-        <span class="hero-eyebrow">CUNY Hunter College</span>
-        <div class="hero-name">Ishrat Tuli</div>
-        <div class="hero-name-serif">Media Studies Student/ Multimedia Journalist</div>
-        <div class="wc-rule"></div>
-        <p class="hero-sub">Creative and written assignments for Visual Communications &amp; Interactive Design, Spring 2026</p>
-        <div class="tags">
-            <span class="tag tag-a">Photography</span>
-            <span class="tag tag-b">Graphic Design</span>
-        </div>
-    </div>
-    <div class="hero-portrait">
-        <div class="splash"></div>
-        <div class="stroke stroke-1"></div>
-        <div class="stroke stroke-2"></div>
-        <div class="portrait-wrap">
+<div class="painting-accent ballet-1"></div>
+<div class="painting-accent ballet-2"></div>
+
+<div class="container">
+    <header>
+        <div class="headshot-frame">
             <img src="headshot.png" alt="Ishrat Tuli">
         </div>
-    </div>
-</section>
+        <h1>Ishrat Tuli</h1>
+        <p class="subtitle">Media Studies Student | Multimedia Journalist</p>
+        <p class="subtitle" style="font-size:1.1rem; margin-top:.5rem; opacity:.6;">Creative and written assignments for Visual Communications &amp; Interactive Design, Spring 2026</p>
+    </header>
 
-<main>
-    <section class="section" id="statement">
-        <div class="sec-head">
-            <span class="sec-label">About My Work</span>
-            <div class="sec-title">Creative Statement</div>
-        </div>
-        <div class="prose-card">
+    <!-- Creative Statement -->
+    <section class="ornate-frame" id="statement">
+        <h2 class="frame-title">Creative Statement</h2>
+        <div class="scroll-content">
             <p>My work is all about interpretation. The idea that there is more than what meets the eye. I gain inspiration from the genre of impressionism art, adopting the styles of famous artists such as Monet, Degas and Renoir. I portray this concept by capturing fleeting, real-life moments and sometimes blurry and 'unblended' photographs. I admire still settings, where seemingly nothing is happening, moments that may look like they may be better as the background of a portrait and finding meaning behind the simple, knowing that there is always more to see. I aim for both vibrant and apathetic moods when working with any medium, emphasizing light, or the absence of it, displaying the simplicity yet elegance of everyday life.</p>
         </div>
     </section>
 
-    <!-- ══ CREATIVE ASSIGNMENTS ══ -->
-    <section class="section" id="creative">
-        <!-- Section header with painted brush-stroke rule -->
-        <div class="sec-head">
-            <span class="sec-label">Portfolio</span>
-            <div class="sec-title">Creative Assignments</div>
-        </div>
-
-        <!-- Watercolor gallery frame -->
-        <div class="wc-gallery-frame">
-            <!-- Corner brackets -->
-            <span class="wc-corner wc-tl"></span>
-            <span class="wc-corner wc-tr"></span>
-            <span class="wc-corner wc-bl"></span>
-            <span class="wc-corner wc-br"></span>
-            <!-- Soft wash behind cards -->
-            <div class="wc-gallery-wash"></div>
-
-            <div class="cards-scroll">
-                <a href="adobe.html" class="card"><div class="card-img"><img src="Image1.jpg" alt=""></div><div class="card-body"><h3>Week 2, North building view...</h3></div></a>
-                <a href="adobe2.html" class="card"><div class="card-img"><img src="image2.jpg" alt=""></div><div class="card-body"><h3>Week 2, Street view from...</h3></div></a>
-                <a href="depth.html" class="card"><div class="card-img"><img src="shallowdepth.jpg" alt=""></div><div class="card-body"><h3>Week 3, Shallow Depth of Field</h3></div></a>
-                <a href="depth2.html" class="card"><div class="card-img"><img src="deepog.JPG" alt=""></div><div class="card-body"><h3>Week 3, Deep Depth of Field</h3></div></a>
-                <a href="depth3.html" class="card"><div class="card-img"><img src="blurog.JPG" alt=""></div><div class="card-body"><h3>Week 3, Depth of Field, Blur Tool</h3></div></a>
-                <a href="montage.html" class="card"><div class="card-img"><img src="photomontage.jpg" alt=""></div><div class="card-body"><h3>Week 5, Photomontage</h3></div></a>
-                <a href="illustrator.html" class="card"><div class="card-img"><img src="imagetrace.png" alt=""></div><div class="card-body"><h3>Week 6, Illustrated Environment</h3></div></a>
-                <a href="illustrator2.html" class="card"><div class="card-img"><img src="coming soon.jpg" alt=""></div><div class="card-body"><h3>Week 6, Emotive Eye</h3></div></a>
-
-            </div>
-
-            <!-- Bottom fade-out to hint at scroll -->
-            <div class="wc-gallery-caption">Scroll to explore ›</div>
-        </div>
-    </section>
-
-    <!-- ══ WRITTEN ASSIGNMENTS ══ -->
-    <section class="section" id="written">
-        <div class="sec-head">
-            <span class="sec-label">Writing</span>
-            <div class="sec-title">Written Assignments</div>
-        </div>
-
-        <div class="wc-written-frame">
-            <span class="wc-corner wc-tl"></span>
-            <span class="wc-corner wc-tr"></span>
-            <span class="wc-corner wc-bl"></span>
-            <span class="wc-corner wc-br"></span>
-
-            <!-- Decorative ghost quote mark -->
-            <span class="wc-ghost-quote">"</span>
-
-            <div class="wc-written-list">
-                <a href="plato.html" class="wc-witem">
-                    <span class="wc-witem-num">01</span>
-                    <div class="wc-witem-body">
-                        <h3>Reflection on "In Plato's Cave"</h3>
-                        <p class="course">MEDPL150 · Spring 2026</p>
-                    </div>
-                    <span class="wc-witem-arrow">→</span>
-                </a>
-                <div class="wc-wdivider"></div>
-                <a href="ai.html" class="wc-witem">
-                    <span class="wc-witem-num">02</span>
-                    <div class="wc-witem-body">
-                        <h3>Reflection on "With 'AI slop' distorting our reality, the world is sleepwalking into disaster", Nesrine Malik</h3>
-                        <p class="course">MEDPL150 · Spring 2026</p>
-                    </div>
-                    <span class="wc-witem-arrow">→</span>
-                </a>
-            </div>
+    <!-- Creative Assignments -->
+    <section class="ornate-frame" id="creative">
+        <h2 class="frame-title">Creative Assignments</h2>
+        <div class="scroll-content horizontal">
+            <a href="adobe.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="Image1.jpg" alt="Week 2 North Building View"></div>
+                    <div class="work-text"><h3>Week 2, North building view...</h3></div>
+                </div>
+            </a>
+            <a href="adobe2.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="image2.jpg" alt="Week 2 Street View"></div>
+                    <div class="work-text"><h3>Week 2, Street view from...</h3></div>
+                </div>
+            </a>
+            <a href="depth.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="shallowdepth.jpg" alt="Shallow Depth of Field"></div>
+                    <div class="work-text"><h3>Week 3, Shallow Depth of Field</h3></div>
+                </div>
+            </a>
+            <a href="depth2.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="deepog.JPG" alt="Deep Depth of Field"></div>
+                    <div class="work-text"><h3>Week 3, Deep Depth of Field</h3></div>
+                </div>
+            </a>
+            <a href="depth3.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="blurog.JPG" alt="Depth of Field Blur Tool"></div>
+                    <div class="work-text"><h3>Week 3, Depth of Field, Blur Tool</h3></div>
+                </div>
+            </a>
+            <a href="montage.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="photomontage.jpg" alt="Photomontage"></div>
+                    <div class="work-text"><h3>Week 5, Photomontage</h3></div>
+                </div>
+            </a>
+            <a href="illustrator.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="imagetrace.png" alt="Illustrated Environment"></div>
+                    <div class="work-text"><h3>Week 6, Illustrated Environment</h3></div>
+                </div>
+            </a>
+            <a href="illustrator2.html" style="text-decoration:none;color:inherit;">
+                <div class="work-item">
+                    <div class="work-thumbnail"><img src="coming soon.jpg" alt="Emotive Eye"></div>
+                    <div class="work-text"><h3>Week 6, Emotive Eye</h3></div>
+                </div>
+            </a>
         </div>
     </section>
 
-    <style>
-    /* ── WATERCOLOR GALLERY FRAME ── */
-    .wc-gallery-frame {
-        position: relative;
-        background: rgba(255,255,255,.45);
-        border: 1px solid rgba(196,168,160,.3);
-        border-radius: 2px;
-        padding: 28px 24px 18px;
-        box-shadow:
-            0 2px 0 rgba(240,207,192,.6),
-            0 6px 32px rgba(46,36,32,.07),
-            inset 0 0 40px rgba(240,207,192,.08);
-    }
-    .wc-gallery-wash {
-        position: absolute; inset: 0; pointer-events: none; border-radius: 2px;
-        background:
-            radial-gradient(ellipse 80% 60% at 10% 0%, rgba(240,207,192,.18) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 80% at 90% 100%, rgba(192,208,218,.12) 0%, transparent 60%);
-    }
-    .wc-gallery-caption {
-        text-align: right;
-        font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
-        color: var(--w-dusty); margin-top: 10px;
-        font-style: italic;
-    }
+    <!-- Written Assignments -->
+    <section class="ornate-frame" id="written">
+        <h2 class="frame-title">Written Assignments</h2>
+        <div class="scroll-content">
+            <div class="assignment-item">
+                <h3><a href="plato.html" style="color:var(--degas-dark);text-decoration:none;border-bottom:2px solid var(--degas-gold);transition:all .3s ease;">Reflection on "In Plato's Cave"</a></h3>
+                <p class="course">MEDPL150 • Spring 2026</p>
+            </div>
+            <div class="assignment-item">
+                <h3><a href="ai.html" style="color:var(--degas-dark);text-decoration:none;border-bottom:2px solid var(--degas-gold);transition:all .3s ease;">Reflection on "With 'AI slop' distorting our reality, the world is sleepwalking into disaster", Nesrine Malik</a></h3>
+                <p class="course">MEDPL150 • Spring 2026</p>
+            </div>
+        </div>
+    </section>
+</div>
 
-    /* ── WRITTEN FRAME ── */
-    .wc-written-frame {
-        position: relative;
-        background: rgba(255,255,255,.45);
-        border: 1px solid rgba(196,168,160,.3);
-        border-radius: 2px;
-        padding: 44px 56px;
-        box-shadow:
-            0 2px 0 rgba(240,207,192,.6),
-            0 6px 32px rgba(46,36,32,.07),
-            inset 0 0 40px rgba(240,207,192,.08);
-        overflow: hidden;
-    }
-    .wc-ghost-quote {
-        position: absolute; top: -10px; right: 20px;
-        font-family: 'Bodoni Moda', serif;
-        font-size: 9rem; line-height: 1;
-        color: var(--w-peach); opacity: .25;
-        pointer-events: none; user-select: none;
-    }
-
-    /* Shared corner brackets */
-    .wc-corner {
-        position: absolute;
-        width: 16px; height: 16px;
-        border-color: var(--w-terr); border-style: solid; border-width: 0;
-        opacity: .4;
-    }
-    .wc-tl { top: -1px; left: -1px;   border-top-width: 1.5px; border-left-width: 1.5px; }
-    .wc-tr { top: -1px; right: -1px;  border-top-width: 1.5px; border-right-width: 1.5px; }
-    .wc-bl { bottom: -1px; left: -1px;  border-bottom-width: 1.5px; border-left-width: 1.5px; }
-    .wc-br { bottom: -1px; right: -1px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
-
-    /* Written list */
-    .wc-written-list { display: flex; flex-direction: column; position: relative; z-index: 1; }
-    .wc-wdivider {
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(196,168,160,.35), transparent);
-        margin: 0;
-    }
-    .wc-witem {
-        display: flex; align-items: center; gap: 1.4rem;
-        padding: 1.4rem .4rem;
-        text-decoration: none; color: inherit;
-        border-radius: 3px;
-        transition: background .2s;
-    }
-    .wc-witem:hover { background: rgba(240,207,192,.18); }
-    .wc-witem--tbd { opacity: .4; pointer-events: none; }
-    .wc-witem-num {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 1.1rem; font-style: italic;
-        color: var(--w-terr); opacity: .6;
-        flex-shrink: 0; width: 24px; text-align: right;
-    }
-    .wc-witem-body { flex: 1; }
-    .wc-witem-body h3 {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 1.15rem; font-weight: 400; line-height: 1.5;
-        color: var(--w-ink); margin-bottom: .3rem;
-        transition: color .2s;
-    }
-    .wc-witem:hover .wc-witem-body h3 { color: var(--w-terr); }
-    .wc-witem-body .course {
-        font-size: .82rem; font-style: italic;
-        color: var(--w-mauve); letter-spacing: .06em;
-    }
-    .wc-witem-arrow {
-        font-size: .9rem; color: var(--w-terr);
-        opacity: 0; flex-shrink: 0;
-        transition: opacity .2s, transform .2s;
-        transform: translateX(-6px);
-    }
-    .wc-witem:hover .wc-witem-arrow { opacity: .6; transform: translateX(0); }
-
-    @media(max-width:768px) {
-        .wc-written-frame { padding: 24px 20px; }
-        .wc-gallery-frame { padding: 16px 12px 12px; }
-    }
-    </style>
-</main>
-
-<footer>
-    <span class="footer-cursive">Ishrat Tuli</span>
-    <p class="footer-sub">Media Studies Student &amp; Multimedia Journalist</p>
-    <div class="f-rule"></div>
-    <nav class="footer-nav">
-        <a href="#statement">Statement</a>
-        <a href="#creative">Creative</a>
-        <a href="#written">Written</a>
-    </nav>
-    <p class="footer-copy">© 2026 Ishrat Tuli · CUNY Hunter College</p>
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-top">
+            <span class="footer-rule"></span>
+            <span class="footer-diamond">◆</span>
+            <span class="footer-rule"></span>
+        </div>
+        <p class="footer-name">Ishrat Tuli</p>
+        <p class="footer-tagline">Media Studies Student &amp; Multimedia Journalist</p>
+        <nav class="footer-nav">
+            <a href="#statement">Statement</a>
+            <span class="footer-sep">·</span>
+            <a href="#creative">Creative</a>
+            <span class="footer-sep">·</span>
+            <a href="#written">Written</a>
+        </nav>
+        <p class="footer-credit">© 2026 Ishrat Tuli &nbsp;·&nbsp; CUNY Hunter College</p>
+    </div>
 </footer>
+
+<style>
+    .site-footer {
+        position: relative; z-index: 1;
+        background: var(--degas-dark);
+        color: var(--degas-cream);
+        padding: 48px 2rem 36px;
+        text-align: center;
+        margin: 0 -100px;
+    }
+    .footer-inner { max-width: 600px; margin: 0 auto; }
+    .footer-top {
+        display: flex; align-items: center; justify-content: center;
+        gap: .75rem; margin-bottom: 24px;
+    }
+    .footer-rule {
+        display: block; width: 80px; height: 1px;
+        background: linear-gradient(to right, transparent, rgba(212,175,55,.6));
+    }
+    .footer-rule:last-child { background: linear-gradient(to left, transparent, rgba(212,175,55,.6)); }
+    .footer-diamond { font-size: .55rem; color: var(--degas-gold); opacity: .8; }
+    .footer-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem; font-weight: 600; letter-spacing: .06em;
+        color: var(--degas-cream); margin-bottom: 6px;
+    }
+    .footer-tagline {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: .9rem; font-style: italic; letter-spacing: .12em;
+        color: rgba(249,245,240,.45); margin-bottom: 24px;
+    }
+    .footer-nav {
+        display: flex; align-items: center; justify-content: center;
+        gap: .75rem; margin-bottom: 28px;
+    }
+    .footer-nav a {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: .78rem; letter-spacing: .22em; text-transform: uppercase;
+        color: rgba(212,175,55,.75); text-decoration: none; transition: color .25s;
+    }
+    .footer-nav a:hover { color: var(--degas-gold); }
+    .footer-sep { color: rgba(249,245,240,.2); font-size: .8rem; }
+    .footer-credit {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: .78rem; letter-spacing: .1em;
+        color: rgba(249,245,240,.25);
+    }
+    @media(max-width:768px) {
+        .site-footer { margin: 0; padding: 40px 1.5rem 28px; }
+    }
+</style>
 
 <script>
     // Scroll shadow on nav
-    const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 30
-            ? '0 4px 24px rgba(46,36,32,.08)'
-            : 'none';
+        document.getElementById('siteHeader').style.boxShadow = window.scrollY > 40
+            ? '0 4px 24px rgba(58,50,40,.1)'
+            : '0 2px 20px rgba(58,50,40,.06)';
     });
 
     // Active nav link based on scroll position
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = document.querySelectorAll('.header-nav a');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinks.forEach(a => a.classList.remove('active'));
-                const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                const active = document.querySelector(`.header-nav a[href="#${entry.target.id}"]`);
                 if (active) active.classList.add('active');
             }
         });
